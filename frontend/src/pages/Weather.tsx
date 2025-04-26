@@ -1,11 +1,36 @@
 import React, { useState } from 'react';
-import './Weather.css';
+import { motion } from 'framer-motion';
+
+interface ForecastDay {
+  day: string;
+  high: number;
+  low: number;
+  condition: string;
+  precipitation: string;
+}
+
+interface LocationWeather {
+  name: string;
+  current: {
+    temp: number;
+    condition: string;
+    humidity: number;
+    wind: string;
+    precipitation: string;
+  };
+  forecast: ForecastDay[];
+  climbing: string;
+}
+
+interface LocationsData {
+  [key: string]: LocationWeather;
+}
 
 const Weather: React.FC = () => {
   const [selectedLocation, setSelectedLocation] = useState<string>('yosemite');
 
   // Mock data for different climbing locations
-  const locations = {
+  const locations: LocationsData = {
     yosemite: {
       name: 'Yosemite National Park, CA',
       current: {
@@ -62,63 +87,74 @@ const Weather: React.FC = () => {
     }
   };
 
-  // @ts-ignore
   const selectedData = locations[selectedLocation];
 
   return (
-    <div className="weather-page">
-      <h1>Weather & Climbing Conditions</h1>
-      
-      <div className="location-selector">
-        <label>Select Climbing Location:</label>
-        <select 
-          value={selectedLocation}
-          onChange={(e) => setSelectedLocation(e.target.value)}
-        >
-          <option value="yosemite">Yosemite National Park, CA</option>
-          <option value="joshuaTree">Joshua Tree National Park, CA</option>
-          <option value="redRiver">Red River Gorge, KY</option>
-        </select>
-      </div>
+    <motion.div 
+      className="min-h-screen bg-gray-50 pt-20 pb-12"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.4 }}
+    >
+      <div className="container-custom">
+        <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center">Weather & Climbing Conditions</h1>
+        
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-gray-700 mb-1">Select Climbing Location:</label>
+          <select 
+            className="w-full md:w-auto rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
+            value={selectedLocation}
+            onChange={(e) => setSelectedLocation(e.target.value)}
+          >
+            <option value="yosemite">Yosemite National Park, CA</option>
+            <option value="joshuaTree">Joshua Tree National Park, CA</option>
+            <option value="redRiver">Red River Gorge, KY</option>
+          </select>
+        </div>
 
-      <div className="weather-container">
-        <div className="current-weather-card">
-          <h2>Current Conditions</h2>
-          <h3>{selectedData.name}</h3>
-          <div className="current-conditions">
-            <div className="temperature">{selectedData.current.temp}°F</div>
-            <div className="condition">{selectedData.current.condition}</div>
-            <div className="details">
-              <p><strong>Humidity:</strong> {selectedData.current.humidity}%</p>
-              <p><strong>Wind:</strong> {selectedData.current.wind}</p>
-              <p><strong>Precipitation:</strong> {selectedData.current.precipitation}</p>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-bold mb-4">Current Conditions</h2>
+            <h3 className="text-lg font-medium mb-3">{selectedData.name}</h3>
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="text-4xl font-bold">{selectedData.current.temp}°F</div>
+                <div className="text-xl">{selectedData.current.condition}</div>
+              </div>
+              <div className="space-y-2 text-gray-700">
+                <p><span className="font-medium">Humidity:</span> {selectedData.current.humidity}%</p>
+                <p><span className="font-medium">Wind:</span> {selectedData.current.wind}</p>
+                <p><span className="font-medium">Precipitation:</span> {selectedData.current.precipitation}</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="forecast-card">
-          <h2>5-Day Forecast</h2>
-          <div className="forecast-grid">
-            {selectedData.forecast.map((day, index) => (
-              <div key={index} className="forecast-day">
-                <h3>{day.day}</h3>
-                <p className="condition">{day.condition}</p>
-                <p className="temperature">
-                  <span className="high">{day.high}°F</span>
-                  <span className="low">{day.low}°F</span>
-                </p>
-                <p className="precipitation">Precip: {day.precipitation}</p>
-              </div>
-            ))}
+          <div className="lg:col-span-2 bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-bold mb-4">5-Day Forecast</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-5 gap-3">
+              {selectedData.forecast.map((day: ForecastDay, index: number) => (
+                <div key={index} className="bg-gray-50 rounded p-3 text-center">
+                  <h3 className="font-medium">{day.day}</h3>
+                  <p className="text-sm my-2">{day.condition}</p>
+                  <p className="text-sm">
+                    <span className="text-primary-dark font-medium">{day.high}°F</span>
+                    {' / '}
+                    <span className="text-gray-600">{day.low}°F</span>
+                  </p>
+                  <p className="text-xs text-gray-600 mt-1">Precip: {day.precipitation}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="lg:col-span-3 bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-bold mb-3">Climbing Conditions</h2>
+            <p className="text-gray-700">{selectedData.climbing}</p>
           </div>
         </div>
-
-        <div className="climbing-conditions-card">
-          <h2>Climbing Conditions</h2>
-          <p>{selectedData.climbing}</p>
-        </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
