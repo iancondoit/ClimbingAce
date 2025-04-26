@@ -1,0 +1,267 @@
+.profile-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-avatar {
+  margin-right: 2rem;
+}
+
+.avatar-placeholder {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00bcd4, #1e88e5);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.profile-info h1 {
+  margin-bottom: 0.5rem;
+}
+
+.profile-info .location {
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.climbing-level {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.climbing-types {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.type-badge {
+  background: #f5f5f5;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.profile-tabs {
+  display: flex;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tab-button {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  background: none;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border-bottom: 3px solid transparent;
+}
+
+.tab-button:hover {
+  background-color: #f5f5f5;
+}
+
+.tab-button.active {
+  border-bottom-color: #00bcd4;
+  color: #00bcd4;
+}
+
+.profile-content {
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.info-section {
+  margin-bottom: 2rem;
+}
+
+.info-section h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.info-section p {
+  line-height: 1.6;
+}
+
+.edit-button, .change-password-button, .add-trip-button {
+  background: #00bcd4;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+.edit-button:hover, .change-password-button:hover, .add-trip-button:hover {
+  background: #0097a7;
+}
+
+.favorites-list h2, .trips-list h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.routes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.route-card {
+  background: #f9f9f9;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.route-image-placeholder {
+  height: 150px;
+  background: #e0e0e0;
+}
+
+.route-info {
+  padding: 1rem;
+}
+
+.route-info h3 {
+  margin: 0 0 0.5rem;
+}
+
+.view-button {
+  display: inline-block;
+  background-color: #00bcd4;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-top: 1rem;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.view-button:hover {
+  background-color: #0097a7;
+}
+
+.trips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.trip-card {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.trip-header {
+  margin-bottom: 1rem;
+}
+
+.trip-header h3 {
+  margin: 0 0 0.5rem;
+}
+
+.trip-dates {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.trip-routes h4 {
+  margin-bottom: 0.5rem;
+}
+
+.trip-routes ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+.trip-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.edit-trip-button, .delete-trip-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.edit-trip-button {
+  background: #00bcd4;
+  color: white;
+  margin-right: 0.75rem;
+}
+
+.edit-trip-button:hover {
+  background: #0097a7;
+}
+
+.delete-trip-button {
+  background: #f5f5f5;
+  color: #e53935;
+}
+
+.delete-trip-button:hover {
+  background: #ffebee;
+}
+
+.no-data-message {
+  color: #666;
+  text-align: center;
+  padding: 2rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .profile-avatar {
+    margin-right: 0;
+    margin-bottom: 1.5rem;
+  }
+  
+  .climbing-types {
+    justify-content: center;
+  }
+} 
